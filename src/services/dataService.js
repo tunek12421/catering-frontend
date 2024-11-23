@@ -1,3 +1,4 @@
+import defaultMenuData from "./defaultMenuData";
 const API_BASE_URL = "http://localhost:5000/api"; // Cambiar según el backend
 
 /**
@@ -25,6 +26,19 @@ export const fetchServicesData = async () => {
     setTimeout(() => {
       // Simula un error al obtener los datos
       reject("Error al obtener los datos de servicios.");
+    }, 1000);
+  });
+};
+
+export const fetchMenuData = async () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const shouldFail = Math.random() < 0.1; // Simula fallos en el 10% de los casos
+      if (shouldFail) {
+        reject(new Error("Error al cargar los datos del menú"));
+      } else {
+        resolve([...defaultMenuData]); // Asegúrate de devolver un array
+      }
     }, 1000);
   });
 };
