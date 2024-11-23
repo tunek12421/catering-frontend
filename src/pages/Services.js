@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { useSearchParams } from "react-router-dom";
 import ServicesTabs from "../components/ServicesTabs";
 import { fetchServicesData } from "../services/dataService";
+import defaultServicesData from "../data/defaultDataServiceServices";
+import CarouselBanner from "../components/CarouselBanner";
 
 const pageTransition = {
   initial: { opacity: 0, y: 50 },
@@ -26,47 +28,6 @@ const staggerContainer = {
 const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
-};
-
-const defaultServicesData = {
-  services: [
-    {
-      id: "corporate",
-      title: "Eventos Corporativos",
-      description:
-        "Nuestros servicios de catering para empresas están diseñados para impresionar, desde reuniones ejecutivas hasta grandes conferencias. Ofrecemos opciones personalizadas para satisfacer las necesidades de tu evento.",
-      images: ["/assets/images/corporate1.jpg", "/assets/images/corporate2.jpg"],
-      features: [
-        "Menús personalizados para eventos empresariales.",
-        "Capacidad para grandes volúmenes.",
-        "Opciones para dietas especiales.",
-      ],
-    },
-    {
-      id: "wedding",
-      title: "Bodas y Celebraciones",
-      description:
-        "Hacemos que tu día especial sea aún más memorable con un catering que refleja tu estilo. Desde bodas elegantes hasta celebraciones íntimas, estamos contigo en cada detalle.",
-      images: ["/assets/images/wedding1.jpg", "/assets/images/wedding2.jpg"],
-      features: [
-        "Diseño de menús temáticos.",
-        "Decoraciones personalizadas para mesas.",
-        "Bebidas exclusivas y opciones de barra libre.",
-      ],
-    },
-    {
-      id: "private",
-      title: "Eventos Privados",
-      description:
-        "Ya sea una fiesta de cumpleaños, un aniversario o una reunión especial, ofrecemos un servicio exclusivo y discreto que hará que tus invitados se sientan únicos.",
-      images: ["/assets/images/private1.jpg", "/assets/images/private2.jpg"],
-      features: [
-        "Servicio en casa o en locaciones privadas.",
-        "Pequeños detalles que hacen la diferencia.",
-        "Asistencia completa de planificación.",
-      ],
-    },
-  ],
 };
 
 const ServicesPage = () => {
@@ -130,32 +91,7 @@ const ServicesPage = () => {
       animate="animate"
       exit="exit"
     >
-      {/* Introducción General */}
-      <section
-        className="relative py-16 px-6 md:px-16 text-center overflow-hidden bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: 'url(/assets/images/services-banner.jpg)' }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10">
-          <motion.h1
-            className="text-4xl md:text-5xl font-extrabold text-white"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            Nuestros Servicios
-          </motion.h1>
-          <motion.p
-            className="mt-4 text-lg md:text-xl text-gray-100 max-w-3xl mx-auto"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            En Sabores de Altura, transformamos tus eventos en experiencias
-            únicas y memorables.
-          </motion.p>
-        </div>
-      </section>
+      <CarouselBanner />
 
       {/* Detalle de Servicios */}
       <section className="py-16 px-6 md:px-16">
@@ -243,9 +179,7 @@ const ServicesPage = () => {
           )
         }
         onNext={() =>
-          setCurrentImageIndex(
-            (currentImageIndex + 1) % lightboxSlides.length
-          )
+          setCurrentImageIndex((currentImageIndex + 1) % lightboxSlides.length)
         }
       />
     </motion.main>

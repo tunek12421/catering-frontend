@@ -3,24 +3,29 @@ import { useTransition, animated } from "@react-spring/web";
 import { Link } from "react-router-dom";
 
 const ServiceCarousel = ({ services }) => {
+  // Manejo de estado
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Siempre inicializa una lista vacía si `services` no está definido.
+  const validServices = services || [];
+
   const nextSlide = () => {
-    setCurrentIndex((currentIndex + 1) % services.length);
+    setCurrentIndex((currentIndex + 1) % validServices.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((currentIndex - 1 + services.length) % services.length);
+    setCurrentIndex((currentIndex - 1 + validServices.length) % validServices.length);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    if (validServices.length > 0) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [currentIndex, validServices.length]);
 
-  // Animaciones con React Spring
   const transitions = useTransition(currentIndex, {
     key: currentIndex,
     from: {
@@ -36,11 +41,16 @@ const ServiceCarousel = ({ services }) => {
       transform: "translate3d(-50%,0,0) scale(0.8) rotateY(-90deg)",
     },
     config: {
-      mass: 5, // Aumentamos la masa para una animación más fluida
+      mass: 5,
       tension: 80,
       friction: 60,
     },
   });
+
+  // Return temprano: después de que los hooks se han llamado
+  if (validServices.length === 0) {
+    return <div>No hay servicios disponibles en este momento.</div>;
+  }
 
   return (
     <div className="relative w-full">
@@ -67,21 +77,19 @@ const ServiceCarousel = ({ services }) => {
             >
               <div className="bg-white p-6 rounded-lg shadow-lg w-full h-full flex flex-col items-center">
                 <img
-                  src={services[i].image}
-                  alt={services[i].title}
+                  src={validServices[i].image}
+                  alt={validServices[i].title}
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
                 <h3 className="text-xl font-semibold text-green-light text-center mb-2">
-                  {services[i].title}
+                  {validServices[i].title}
                 </h3>
                 <p className="text-gray-700 text-base text-center mb-4">
-                  {services[i].description}
+                  {validServices[i].description}
                 </p>
-                {/* Link a la página de Services con ID del servicio */}
+                {/* Link a la página de Services con el ID real del servicio */}
                 <Link
-                  to={`/services?id=${services[i].title
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
+                  to={`/services?id=${validServices[i].id}`}
                   className="bg-green-light text-white py-2 px-4 rounded-full shadow-md hover:bg-gold transition"
                 >
                   Ver Más
