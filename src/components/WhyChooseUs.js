@@ -8,7 +8,7 @@ const WhyChooseUs = () => {
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="slide-in-left">
             <img
-              src="/images/about2.jpg"
+              src="../assets/images/vision/f1.jpg"
               alt="Calidad garantizada"
               className="rounded-full shadow-md mx-auto w-32 h-32 object-cover"
             />
@@ -19,7 +19,7 @@ const WhyChooseUs = () => {
           </div>
           <div className="slide-in-right">
             <img
-              src="/images/about2.jpg"
+              src="../assets/images/vision/f2.jpg"
               alt="Decoraciones únicas"
               className="rounded-full shadow-md mx-auto w-32 h-32 object-cover"
             />
@@ -30,7 +30,7 @@ const WhyChooseUs = () => {
           </div>
           <div className="slide-in-left">
             <img
-              src="/images/about2.jpg"
+              src="../assets/images/vision/f3.jpg"
               alt="Servicio integral"
               className="rounded-full shadow-md mx-auto w-32 h-32 object-cover"
             />
@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
           </div>
           <div className="slide-in-right">
             <img
-              src="/images/about2.jpg"
+              src="../assets/images/vision/f4.jpg"
               alt="Flexibilidad"
               className="rounded-full shadow-md mx-auto w-32 h-32 object-cover"
             />
