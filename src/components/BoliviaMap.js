@@ -85,15 +85,19 @@ const BoliviaMap = () => {
     <MapContainer
       center={[-16.2902, -63.5887]} // Centro de Bolivia
       zoom={5}
-      style={{ height: "600px", width: "100%" }}
+      style={{
+        height: "600px",
+        width: "100%",
+        zIndex: 1, // Reduce el z-index
+        position: "relative", // Asegúrate de que no sea "absolute" si no es necesario
+      }}
+      className="bolivia-map-container"
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* Ajustar mapa a los marcadores */}
       <MapBounds markers={departments} />
-      {/* Marcadores para las ciudades más urbanas */}
       {departments.map((dept, index) => (
         <Marker key={index} position={dept.position}>
           <Popup>{dept.name}</Popup>
@@ -102,5 +106,6 @@ const BoliviaMap = () => {
     </MapContainer>
   );
 };
+
 
 export default BoliviaMap;

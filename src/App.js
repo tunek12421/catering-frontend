@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Menu from "./pages/Menu/Menu";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
           <Route path="menu" element={<Menu />} />
+          <Route path="admin/*" element={<AdminDashboard />} />
         </Routes>
       </AnimatePresence>
       <Footer />
