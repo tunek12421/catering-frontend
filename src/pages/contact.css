@@ -1,0 +1,19 @@
+/* Estilos para el carrusel */
+.slick-slide {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Efecto de hover para las imágenes */
+  .slick-slide:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Opcional: Efecto de sombra en la imagen principal */
+  .slick-slide img {
+    transition: all 0.3s ease;
+  }
+  
+  .slick-slide:hover img {
+    filter: brightness(80%);
+  }
+  

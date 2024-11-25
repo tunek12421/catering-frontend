@@ -6,6 +6,7 @@ import SuccessStoriesCarousel from "../components/SuccessStoriesCarousel";
 import Mission from "../components/Mission";
 import Vision from "../components/Vision";
 import WhyChooseUs from "../components/WhyChooseUs";
+import CarouselBanner from "../components/Carousel2"; // Importa el CarouselBanner
 
 const teamData = [
   {
@@ -75,25 +76,9 @@ const About = () => {
 
   return (
     <main className="bg-beige-light min-h-screen pt-16 overflow-hidden">
-      {/* Introducción */}
-      <section className="py-16 px-6 md:px-16 text-center fade-in">
-        <motion.h1
-          className="text-4xl md:text-5xl font-extrabold text-green-light"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          Acerca de Nosotros
-        </motion.h1>
-        <motion.p
-          className="mt-4 text-lg md:text-xl text-gray-700 max-w-3xl mx-auto"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          Descubre la historia, misión y el equipo detrás de Sabores de Altura.
-        </motion.p>
-      </section>
+      {/* Carousel Banner */}
+      <CarouselBanner /> {/* Aquí insertamos el CarouselBanner */}
+
 
       {/* Equipo */}
       <section className="py-16 px-6 md:px-16">
